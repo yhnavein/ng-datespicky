@@ -6,6 +6,11 @@ This library is based on the popular [Date Range Picker](http://www.daterangepic
 
 Code is written in AngularJS directly in TypeScript.
 
+[![Build Status](https://travis-ci.org/yhnavein/ng-datespicky.svg?branch=master)](https://travis-ci.org/yhnavein/ng-datespicky)
+[![NPM version](https://badge.fury.io/js/ng-datespicky.svg)](http://badge.fury.io/js/ng-datespicky)
+[![Dependency Status](https://img.shields.io/david/yhnavein/ng-datespicky.svg)](https://david-dm.org/yhnavein/ng-datespicky)
+[![npm](https://img.shields.io/npm/dm/ng-datespicky.svg?maxAge=2592000)]()
+
 ## How to use it
 
 If you want to add this library to your project just run:
