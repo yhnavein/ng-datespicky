@@ -83,7 +83,6 @@
         "variable-declaration": "onespace"
       }
     ],
-    "typeof-compare": true,
     "variable-name": false,
     "whitespace": [true,
       "check-branch",
