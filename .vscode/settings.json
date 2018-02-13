@@ -1,0 +1,17 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.renderIndentGuides": true,
+  "editor.renderWhitespace": "boundary",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    ".tmp/**": true,
+    "dist/**": true
+  },
+  "tslint.enable": true,
+  "tslint.configFile": "tslint.json",
+  "stylelint.enable": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

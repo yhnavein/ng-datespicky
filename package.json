@@ -1,7 +1,7 @@
 {
   "name": "ng-datespicky",
   "version": "0.0.1",
-  "description": "Library seed for Angular 1.x components",
+  "description": "AngularJS Date Range Picker written in TypeScript with no additional dependencies",
   "repository": {
     "type": "git",
     "url": "git@github.com:yhnavein/ng-datespicky.git"

@@ -2,6 +2,10 @@
 
 > AngularJS Date Range Picker written in TypeScript with no additional dependencies
 
+This library is based on the popular [Date Range Picker](http://www.daterangepicker.com/), but unlike many Angular date pickers, does not depend on it.
+
+Code is written in AngularJS directly in TypeScript.
+
 ## How to use it
 
 If you want to add this library to your project just run:
