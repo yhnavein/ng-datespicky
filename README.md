@@ -32,6 +32,7 @@ First of all, you need to have this library present on your hard disk. Let's sta
 
 ```sh
 git clone git@github.com:yhnavein/ng-datespicky.git
+yarn
 ```
 
 After that you need to link npm library with this repository:
@@ -44,6 +45,3 @@ yarn link "ng-datespicky"
 ```
 
 This will create a symbolic link from your project to this library and you will see changes almost instantly
-
-!!! note
-    You need to rebuild source with **yarn build** command. For convenience, you should use **yarn watch** to automatically watch for changes.

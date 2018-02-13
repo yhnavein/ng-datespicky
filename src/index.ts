@@ -1,11 +1,19 @@
+export * from './calendar.service';
+export * from './date-range-picker.model';
+export * from './date-range-picker.comp';
+export * from './picker-calendar.comp';
 
-export class PackageNameModule {
-  static moduleName: string = "dates-picky";
+import {
+  PickerCalendarComponent,
+  DateRangePickerComponent
+} from './';
 
+class DatesPickyModule {
   static bootstrap() {
-    const app = angular.module(this.moduleName, []);
-
+    angular.module("dates-picky", [])
+      .component('pickerCalendar', new PickerCalendarComponent())
+      .component('dateRangePicker', new DateRangePickerComponent());
   }
 }
 
-PackageNameModule.bootstrap();
+DatesPickyModule.bootstrap();

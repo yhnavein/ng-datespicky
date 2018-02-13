@@ -1,0 +1,31 @@
+<div class="dropdown date-range-picker" uib-dropdown is-open="vm.isOpened" auto-close="outsideClick" dropdown-append-to-body="true">
+  <input type="text" class="form-control form-search-control date-search" maxlength="100" placeholder="{{vm.searchText}}" ng-model="vm.label" readonly="readonly" />
+  <div uib-dropdown-toggle></div>
+  <div class="dropdown-menu dropdown-menu-{{vm.alignment}} date-range-picker-modal" uib-dropdown-menu ng-click="$event.stopPropagation()">
+    <div class="date-range-picker-content" style="display: flex;">
+      <div class="calendar left">
+        <picker-calendar date="vm.leftDate" on-click="vm.clickDay(day)"></picker-calendar>
+      </div>
+      <div class="calendar right">
+        <picker-calendar date="vm.rightDate" on-click="vm.clickDay(day)"></picker-calendar>
+      </div>
+      <div class="controls">
+        <div class="ranges">
+          <ul>
+            <li ng-repeat="range in vm.ranges" ng-click="vm.selectRange(range)">
+              {{ range.name }}
+            </li>
+          </ul>
+        </div>
+        <div class="range_inputs" ng-hide="vm.options.autoApply">
+          <button class="applyBtn btn btn-sm btn-success" type="button" ng-click="vm.apply()" ng-disabled="!vm.startDate || !vm.endDate">
+            Apply
+          </button>
+          <button class="cancelBtn btn btn-sm btn-default" type="button" ng-click="vm.cancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

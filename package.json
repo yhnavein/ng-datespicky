@@ -27,7 +27,7 @@
   },
   "contributors": [],
   "license": "UNLICENSED",
-  "main": "./dist/package-name.js",
+  "main": "./dist/datespicky.js",
   "typings": "./dist/index.d.ts",
   "devDependencies": {
     "@types/angular": "^1.6.40",
