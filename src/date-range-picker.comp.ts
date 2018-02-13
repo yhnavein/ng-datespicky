@@ -147,7 +147,6 @@ export class DateRangePickerComponent implements ng.IComponentOptions {
     startDate: '<',
     endDate: '<',
     onChange: '&?',
-    // isOpened: '<?',
     options: '<',
     ngModel: '='
   };

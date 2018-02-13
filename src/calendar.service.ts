@@ -1,14 +1,26 @@
 import * as moment from 'moment';
-import { groupBy } from 'lodash';
 
 export class CalendarService {
+  groupByWeeks(days: ICalendarDay[]): ICalendarDay[][] {
+    const daysInWeek = 7;
+    const res = [];
+    if (!days || days.length === 0) {
+      return [];
+    }
+
+    return days.reduce((rows: any[], key, index) => {
+      return (index % daysInWeek === 0 ? rows.push([key])
+        : rows[rows.length - 1].push(key)) && rows;
+    }, []);
+  }
+
   getMonthDays(date: Date): ICalendarDay[][] {
     let day = this.getFirstDay(date);
     const lastDay = this.getLastDay(date);
     const currentMonth = moment(date).month();
     const currentDay = moment().format('YYYY-MM-DD');
 
-    const days: Array<ICalendarDay> = [];
+    const days: ICalendarDay[] = [];
 
     while (day.isBefore(lastDay)) {
       const isoName = day.format('YYYY-MM-DD');
@@ -26,9 +38,8 @@ export class CalendarService {
 
       day.add(1, 'day');
     }
-    const groups = groupBy(days, (el) => el.weekNumber);
-    const keys = Object.keys(groups);
-    return keys.map((key) => groups[key]);
+
+    return this.groupByWeeks(days);
   }
 
   private getFirstDay(date: Date) {
