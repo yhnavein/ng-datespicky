@@ -1,0 +1,23 @@
+node_modules/
+*.log
+*.tgz
+*.sh
+*.yml
+*.lock
+
+# exclude dotfiles
+.*
+
+# exclude JSON files in root dir
+/*.json
+
+karma.conf.js
+webpack.config.js
+
+.vscode/
+typings/
+dist/test
+test/
+docs/
+site/
+coverage/
