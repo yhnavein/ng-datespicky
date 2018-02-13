@@ -18,11 +18,19 @@ yarn add ng-datespicky
 npm i --save ng-datespicky
 ```
 
-When package is installed just add `dates-picky` as dependency in main app module:
+When package is installed add `dates-picky` as dependency in main app module:
 
 ```js
 angular.module('app', [..., 'dates-picky', ...]);
 ```
+
+Additionally you need to include styles for `dates-picky` as well. If you are using Webpack, you can do this by including this line in your `scss` files:
+
+```scss
+@import "~ng-datespicky/src/styles";
+```
+
+In the future there will be css files bundled in the build as well.
 
 ## How to Contribute
 
