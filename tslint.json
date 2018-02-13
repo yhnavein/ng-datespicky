@@ -9,7 +9,6 @@
     "comment-format": [false],
     "curly": true,
     "cyclomatic-complexity": [true, 10],
-    "deprecation": true,
     "eofline": false,
     "forin": true,
     "indent": [true, "spaces", 2],
