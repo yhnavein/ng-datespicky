@@ -1,5 +1,5 @@
 <div class="dropdown date-range-picker" uib-dropdown is-open="vm.isOpened" auto-close="outsideClick" dropdown-append-to-body="true">
-  <input type="text" class="form-control form-search-control date-search" maxlength="100" placeholder="{{vm.searchText}}" ng-model="vm.label" readonly="readonly" />
+  <input type="text" class="form-control form-search-control date-search" maxlength="100" placeholder="{{vm.placeholder}}" ng-model="vm.label" readonly="readonly" />
   <div uib-dropdown-toggle></div>
   <div class="dropdown-menu dropdown-menu-{{vm.alignment}} date-range-picker-modal" uib-dropdown-menu ng-click="$event.stopPropagation()">
     <div class="date-range-picker-content" style="display: flex;">

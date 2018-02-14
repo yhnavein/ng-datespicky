@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-import { DateRangePickerOptions, IPredefinedRange, ICalendarDay, CalendarService, ICalendar } from './';
+import { DateRangePickerOptions, IPredefinedRange, ICalendarDay, CalendarService, ICalendar, ISelectedDates } from './';
 import template from './date-range-picker.html';
 
 const defaultOptions: DateRangePickerOptions = {
@@ -10,11 +10,12 @@ const defaultOptions: DateRangePickerOptions = {
 };
 
 export class DateRangePickerController implements ng.IComponentController {
+  placeholder: string;
   startDate?: Date;
   endDate?: Date;
   onChange: Function;
   alignment: string;
-  ngModel: any;
+  ngModel: ISelectedDates;
   isOpened: boolean = false;
   options: DateRangePickerOptions = {};
 
@@ -147,6 +148,7 @@ export class DateRangePickerController implements ng.IComponentController {
 
 export class DateRangePickerComponent implements ng.IComponentOptions {
   bindings: any = {
+    placeholder: '@',
     startDate: '<',
     endDate: '<',
     onChange: '&?',

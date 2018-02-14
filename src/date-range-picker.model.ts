@@ -36,3 +36,8 @@ export interface IPredefinedRange {
   from: moment.Moment;
   to: moment.Moment;
 }
+
+export interface ISelectedDates {
+  startDate?: Date;
+  endDate?: Date;
+}
