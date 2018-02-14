@@ -1,5 +1,11 @@
 # AngularJS DatesPicky
 
+## v 0.0.4
+* [Fix] Fixed bug with `onChange` event firing 3 times instead of 1
+* [Improvement] Temporarily disabling `ngModel` watchers
+* [Improvement] UTC dates are used now
+* [Improvement] Trimming time (and timezone) part of the date.
+
 ## v 0.0.3
 * [New] Added placeholder to the control
 * [New] Added type for ngModel with selected dates
