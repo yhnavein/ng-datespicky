@@ -4,10 +4,10 @@
   <div class="dropdown-menu dropdown-menu-{{vm.alignment}} date-range-picker-modal" uib-dropdown-menu ng-click="$event.stopPropagation()">
     <div class="date-range-picker-content" style="display: flex;">
       <div class="calendar left">
-        <picker-calendar date="vm.leftDate" on-click="vm.clickDay(day)"></picker-calendar>
+        <picker-calendar date="vm.leftDate" on-click="vm.clickDay(day)" next-visible="vm.isMiddleNavVisible" placement="left"></picker-calendar>
       </div>
       <div class="calendar right">
-        <picker-calendar date="vm.rightDate" on-click="vm.clickDay(day)"></picker-calendar>
+        <picker-calendar date="vm.rightDate" on-click="vm.clickDay(day)" prev-visible="vm.isMiddleNavVisible" placement="right"></picker-calendar>
       </div>
       <div class="controls">
         <div class="ranges">

@@ -6,6 +6,9 @@ import template from './picker-calendar.html';
 export class PickerCalendarController implements ng.IComponentController {
   private weekDays: string[];
   private rangePickerCtrl: DateRangePickerController;
+  private nextVisible: boolean = true;
+  private prevVisible: boolean = true;
+  private placement: string;
 
   private date: moment.Moment;
   private days: ICalendarDay[][];
@@ -46,7 +49,9 @@ export class PickerCalendarController implements ng.IComponentController {
   }
 
   changeMonth(direction: number) {
-    this.date.add(direction, 'month');
+    if (direction < 0 && (this.prevVisible || this.placement === 'left') || direction > 0 && (this.nextVisible || this.placement === 'right')) {
+      this.date.add(direction, 'month');
+    }
   }
 
   onClick(day: ICalendarDay) {
@@ -56,7 +61,10 @@ export class PickerCalendarController implements ng.IComponentController {
 
 export class PickerCalendarComponent implements ng.IComponentOptions {
   bindings: any = {
-    date: '='
+    date: '=',
+    nextVisible: '<',
+    prevVisible: '<',
+    placement: '@'
   };
   require: any = {
     rangePickerCtrl: '^^dateRangePicker'

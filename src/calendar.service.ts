@@ -1,8 +1,9 @@
 import * as moment from 'moment';
 
+const daysInWeek = 7;
+
 export class CalendarService {
   groupByWeeks(days: ICalendarDay[]): ICalendarDay[][] {
-    const daysInWeek = 7;
     const res = [];
     if (!days || days.length === 0) {
       return [];

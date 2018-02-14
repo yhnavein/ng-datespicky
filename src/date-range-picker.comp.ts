@@ -36,7 +36,6 @@ export class DateRangePickerController implements ng.IComponentController {
   ];
 
   private readonly dateFormat: string = 'YYYY-MM-DD';
-  private readonly today: moment.Moment = moment();
   private readonly calendarService = new CalendarService();
 
   /* @ngInject */
@@ -47,8 +46,8 @@ export class DateRangePickerController implements ng.IComponentController {
   $onInit(): void {
     this.options = angular.merge({}, defaultOptions, this.options);
     this.weekDays = moment.weekdaysMin();
-    this.leftDate = this.today;
-    this.rightDate = this.today.clone().add(1, 'month');
+    this.leftDate = moment();
+    this.rightDate = moment().add(1, 'month');
 
     // let's watch for changes coming in from the application
     this.$scope.$watch(() => this.ngModel, (newVal, oldVal) => {
@@ -139,6 +138,10 @@ export class DateRangePickerController implements ng.IComponentController {
     if (this.endDate && this.startDate && this.options.autoApply) {
       this.makeSelection();
     }
+  }
+
+  get isMiddleNavVisible(): boolean {
+    return this.rightDate.diff(this.leftDate, 'months') > 1;
   }
 }
 

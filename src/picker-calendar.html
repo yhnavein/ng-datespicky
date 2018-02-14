@@ -2,12 +2,12 @@
   <table class="table-condensed">
     <thead>
       <tr>
-        <th class="next available" ng-click="vm.changeMonth(-1)">
-          <i class="fa fa-chevron-left"></i>
+        <th class="prev available" ng-click="vm.changeMonth(-1)">
+          <i class="fa fa-chevron-left" ng-show="vm.prevVisible || vm.placement == 'left'"></i>
         </th>
         <th colspan="5" class="month">{{ vm.date.toDate() | date:'MMM yyyy' }}</th>
         <th class="next available" ng-click="vm.changeMonth(1)">
-          <i class="fa fa-chevron-right"></i>
+          <i class="fa fa-chevron-right" ng-show="vm.nextVisible || vm.placement == 'right'"></i>
         </th>
       </tr>
       <tr>
