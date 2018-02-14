@@ -1,5 +1,9 @@
 # AngularJS DatesPicky
 
+## v 0.0.5
+* [New] Added button for clearing selection
+* [Improvement] Improved styles of the component. Better theme will be done later :)
+
 ## v 0.0.4
 * [Fix] Fixed bug with `onChange` event firing 3 times instead of 1
 * [Improvement] Temporarily disabling `ngModel` watchers
