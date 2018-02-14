@@ -32,7 +32,7 @@ $daterangepicker-in-range-border-color: transparent !default;
 $daterangepicker-in-range-bg-color: #ebf4f8 !default;
 
 $daterangepicker-active-color: #fff !default;
-$daterangepicker-active-bg-color: #357ebd !default;
+$daterangepicker-active-bg-color: #357ca5 !default;
 $daterangepicker-active-border-color: transparent !default;
 
 $daterangepicker-unselected-color: #999 !default;
@@ -89,17 +89,17 @@ $daterangepicker-control-disabled-color: #ccc !default;
 
 //
 // Ranges
-$daterangepicker-ranges-color: #08c !default;
-$daterangepicker-ranges-bg-color: #f5f5f5 !default;
+$daterangepicker-ranges-color: #555 !default;
+$daterangepicker-ranges-bg-color: #fff !default;
 
 $daterangepicker-ranges-border-size: 1px !default;
-$daterangepicker-ranges-border-color: $daterangepicker-ranges-bg-color !default;
+$daterangepicker-ranges-border-color: #ddd !default;
 $daterangepicker-ranges-border-radius: $daterangepicker-border-radius !default;
 
 $daterangepicker-ranges-hover-color: #fff !default;
-$daterangepicker-ranges-hover-bg-color: $daterangepicker-ranges-color !default;
+$daterangepicker-ranges-hover-bg-color: $daterangepicker-active-bg-color !default;
 $daterangepicker-ranges-hover-border-size: $daterangepicker-ranges-border-size !default;
-$daterangepicker-ranges-hover-border-color: $daterangepicker-ranges-hover-bg-color !default;
+$daterangepicker-ranges-hover-border-color: $daterangepicker-active-bg-color !default;
 $daterangepicker-ranges-hover-border-radius: $daterangepicker-border-radius !default;
 
 $daterangepicker-ranges-active-border-size: $daterangepicker-ranges-border-size !default;
@@ -408,13 +408,21 @@ $daterangepicker-ranges-active-border-radius: $daterangepicker-border-radius !de
       }
     }
   }
+
+  .picker-controls {
+    border-top: 1px solid #eee;
+    padding: 6px 6px 2px;
+    margin: 0 -4px;
+
+    .cancelBtn { margin-right: 6px; }
+  }
 }
 
 //
 // Predefined Ranges
 //
 .ranges {
-  font-size: 11px;
+  font-size: 12px;
   float: none;
   margin: 4px;
   text-align: left;
@@ -427,13 +435,13 @@ $daterangepicker-ranges-active-border-radius: $daterangepicker-border-radius !de
   }
 
   li {
-    font-size: 13px;
+    font-size: 14px;
     background-color: $daterangepicker-ranges-bg-color;
     border: $daterangepicker-ranges-border-size solid $daterangepicker-ranges-border-color;
     border-radius: $daterangepicker-ranges-border-radius;
     color: $daterangepicker-ranges-color;
     padding: 3px 12px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     cursor: pointer;
 
     &:hover {
@@ -456,7 +464,7 @@ $daterangepicker-ranges-active-border-radius: $daterangepicker-border-radius !de
 
     .ranges {
       ul {
-        width: 160px;
+        width: 120px;
       }
     }
 

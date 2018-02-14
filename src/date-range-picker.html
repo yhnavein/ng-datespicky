@@ -17,14 +17,17 @@
             </li>
           </ul>
         </div>
-        <div class="range_inputs" ng-hide="vm.options.autoApply">
-          <button class="applyBtn btn btn-sm btn-success" type="button" ng-click="vm.apply()" ng-disabled="!vm.startDate || !vm.endDate">
-            Apply
-          </button>
-          <button class="cancelBtn btn btn-sm btn-default" type="button" ng-click="vm.cancel()">
-            Cancel
-          </button>
-        </div>
+      </div>
+    </div>
+    <div class="picker-controls" ng-show="vm.startDate || vm.endDate">
+      <button type="button" class="btn btn-sm btn-default" ng-click="vm.clearSelection()">Clear selection</button>
+      <div class="pull-right" ng-hide="vm.options.autoApply">
+        <button class="cancelBtn btn btn-sm btn-default" type="button" ng-click="vm.cancel()">
+          Cancel
+        </button>
+        <button class="applyBtn btn btn-sm btn-success" type="button" ng-click="vm.apply()" ng-disabled="!vm.startDate || !vm.endDate">
+          Apply
+        </button>
       </div>
     </div>
   </div>

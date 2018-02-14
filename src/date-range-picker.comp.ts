@@ -41,7 +41,6 @@ export class DateRangePickerController implements ng.IComponentController {
 
   /* @ngInject */
   constructor(private $scope: ng.IScope) {
-
   }
 
   $onInit(): void {
@@ -154,6 +153,11 @@ export class DateRangePickerController implements ng.IComponentController {
     if (this.endDate && this.startDate && this.options.autoApply) {
       this.makeSelection();
     }
+  }
+
+  clearSelection() {
+    this.endDate = undefined;
+    this.startDate = undefined;
   }
 
   get isMiddleNavVisible(): boolean {
