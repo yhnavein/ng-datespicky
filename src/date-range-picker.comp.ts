@@ -51,32 +51,35 @@ export class DateRangePickerController implements ng.IComponentController {
     this.rightDate = moment().add(1, 'month');
 
     // let's watch for changes coming in from the application
-    this.$scope.$watch(() => this.ngModel, (newVal, oldVal) => {
-      if (newVal === oldVal) {
-        return;
-      }
+    // for now let's disable this functionality
+    // Later, we need to migrate our applications tu use better API from this component
+    // this.$scope.$watch(() => this.ngModel, (newVal, oldVal) => {
+    //   if (newVal === oldVal) {
+    //     return;
+    //   }
 
-      if (!newVal) {
-        this.startDate = undefined;
-        this.endDate = undefined;
-        this.setLabel();
-        if (this.onChange) {
-          this.onChange();
-        }
+    //   if (!newVal) {
+    //     this.startDate = undefined;
+    //     this.endDate = undefined;
+    //     this.setLabel();
+    //     if (this.onChange) {
+    //       this.onChange();
+    //     }
 
-        return;
-      }
+    //     return;
+    //   }
 
-      this.startDate = newVal.startDate;
-      this.endDate = newVal.endDate;
-      this.setLabel();
-      if (this.onChange) {
-        this.onChange();
-      }
+    //   this.startDate = newVal.startDate;
+    //   this.endDate = newVal.endDate;
+    //   this.setLabel();
+    //   if (this.onChange) {
+    //     this.onChange();
+    //   }
 
-    }, true);
+    // }, true);
 
     // let's watch for changes coming in from the application
+    // This functionality will be obsolete in future
     this.$scope.$watchGroup([() => this.startDate, () => this.endDate], (newVal, oldVal) => {
       if (newVal === oldVal) {
         return;
@@ -94,11 +97,6 @@ export class DateRangePickerController implements ng.IComponentController {
       startDate: this.startDate,
       endDate: this.endDate
     };
-    this.setLabel();
-
-    if (this.onChange) {
-      this.onChange();
-    }
 
     if (this.options.autoApply) {
       this.isOpened = false;
@@ -106,8 +104,8 @@ export class DateRangePickerController implements ng.IComponentController {
   }
 
   selectRange(range: IPredefinedRange) {
-    this.startDate = range.from.toDate();
-    this.endDate = range.to.toDate();
+    this.startDate = this.convertToUtcDate(range.from.toDate());
+    this.endDate = this.convertToUtcDate(range.to.toDate());
     this.makeSelection();
   }
 
@@ -124,16 +122,21 @@ export class DateRangePickerController implements ng.IComponentController {
 
   setLabel(): void {
     if (this.startDate !== undefined || this.endDate !== undefined) {
-      const from = this.date2str(this.startDate);
-      const to = this.date2str(this.endDate);
+      const from = this.formatDate(this.startDate);
+      const to = this.formatDate(this.endDate);
       this.label = from + ' - ' + to;
     } else {
       this.label = '';
     }
   }
 
-  date2str(date?: Date): string {
+  formatDate(date?: Date): string {
     return date ? moment(date).format(this.dateFormat) : '?';
+  }
+
+  convertToUtcDate(date: Date) {
+    const extracted = moment(date).format('YYYY-MM-DD');
+    return moment(extracted + 'T00:00:00.00Z').toDate();
   }
 
   clickDay(day: ICalendarDay) {
@@ -141,11 +144,11 @@ export class DateRangePickerController implements ng.IComponentController {
 
     if (!this.startDate || this.endDate || date.isBefore(this.startDate, 'day')) {
       this.endDate = undefined;
-      this.startDate = date.toDate();
+      this.startDate = this.convertToUtcDate(date.toDate());
     } else if (!this.endDate && date.isBefore(this.startDate)) {
-      this.endDate = new Date(this.startDate!.getTime());
+      this.endDate = this.convertToUtcDate(this.startDate);
     } else {
-      this.endDate = date.toDate();
+      this.endDate = this.convertToUtcDate(date.toDate());
     }
 
     if (this.endDate && this.startDate && this.options.autoApply) {
