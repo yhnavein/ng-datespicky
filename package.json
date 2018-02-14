@@ -26,7 +26,7 @@
     "prepare": "npm run build"
   },
   "contributors": [],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./dist/datespicky.js",
   "typings": "./dist/index.d.ts",
   "devDependencies": {
