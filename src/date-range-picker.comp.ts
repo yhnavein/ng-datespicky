@@ -75,6 +75,18 @@ export class DateRangePickerController implements ng.IComponentController {
       }
 
     }, true);
+
+    // let's watch for changes coming in from the application
+    this.$scope.$watchGroup([() => this.startDate, () => this.endDate], (newVal, oldVal) => {
+      if (newVal === oldVal) {
+        return;
+      }
+
+      this.setLabel();
+      if (this.onChange) {
+        this.onChange();
+      }
+    });
   }
 
   makeSelection() {
@@ -149,11 +161,11 @@ export class DateRangePickerController implements ng.IComponentController {
 export class DateRangePickerComponent implements ng.IComponentOptions {
   bindings: any = {
     placeholder: '@',
-    startDate: '<',
-    endDate: '<',
+    startDate: '=?',
+    endDate: '=?',
     onChange: '&?',
     options: '<',
-    ngModel: '='
+    ngModel: '=?'
   };
   controller: any = DateRangePickerController;
   template: string = template;
