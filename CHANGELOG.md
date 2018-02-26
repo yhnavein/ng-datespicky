@@ -1,5 +1,8 @@
 # AngularJS DatesPicky
 
+## v 0.0.6
+* [Fix] Always update label, not only when the new value is different. It fixes an issue when on load of the page there was no indication that dates were already set.
+
 ## v 0.0.5
 * [New] Added button for clearing selection
 * [Improvement] Improved styles of the component. Better theme will be done later :)

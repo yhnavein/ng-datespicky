@@ -80,11 +80,12 @@ export class DateRangePickerController implements ng.IComponentController {
     // let's watch for changes coming in from the application
     // This functionality will be obsolete in future
     this.$scope.$watchGroup([() => this.startDate, () => this.endDate], (newVal, oldVal) => {
+      this.setLabel();
+
       if (newVal === oldVal) {
         return;
       }
 
-      this.setLabel();
       if (this.onChange) {
         this.onChange();
       }
