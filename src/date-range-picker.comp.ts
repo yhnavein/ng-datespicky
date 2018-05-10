@@ -79,17 +79,8 @@ export class DateRangePickerController implements ng.IComponentController {
 
     // let's watch for changes coming in from the application
     // This functionality will be obsolete in future
-    this.$scope.$watchGroup([() => this.startDate, () => this.endDate], (newVal, oldVal) => {
-      this.setLabel();
-
-      if (newVal === oldVal) {
-        return;
-      }
-
-      if (this.onChange) {
-        this.onChange();
-      }
-    });
+    this.$scope.$watchGroup([() => this.startDate], (newVal, oldVal) => this.pickedDateChanged(newVal, oldVal, true));
+    this.$scope.$watchGroup([() => this.endDate], (newVal, oldVal) => this.pickedDateChanged(newVal, oldVal, false));
   }
 
   makeSelection() {
@@ -162,7 +153,44 @@ export class DateRangePickerController implements ng.IComponentController {
   }
 
   get isMiddleNavVisible(): boolean {
-    return this.rightDate.diff(this.leftDate, 'months') > 1;
+    return this.monthDiff(this.leftDate, this.rightDate) > 1;
+  }
+
+  private pickedDateChanged(newVal: any, oldVal: any, isStartDate: boolean): void {
+    this.setLabel();
+    if (newVal === oldVal) {
+      return;
+    }
+    isStartDate ? this.updateLeftDate() : this.updateRightDate();
+
+    if (this.onChange) {
+      this.onChange();
+    }
+
+  }
+
+  private updateLeftDate(): void {
+    if (this.startDate) {
+      if (!this.isDateDisplayed(moment(this.startDate))) {
+        this.leftDate = moment(this.startDate);
+      }
+    }
+  }
+
+  private updateRightDate(): void {
+    if (this.endDate) {
+      if (!this.isDateDisplayed(moment(this.endDate))) {
+        this.rightDate = moment(this.endDate);
+      }
+    }
+  }
+
+  private isDateDisplayed(date: moment.Moment): boolean {
+    return (this.leftDate && date.month() === this.leftDate.month()) || (this.rightDate && date.month() === this.rightDate.month());
+  }
+
+  private monthDiff(beforeDate: moment.Moment, afterDate: moment.Moment): number {
+    return (afterDate.month() + afterDate.year() * 12) - (beforeDate.month() + beforeDate.year() * 12);
   }
 }
 
