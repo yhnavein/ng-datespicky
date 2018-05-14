@@ -1,5 +1,8 @@
 # AngularJS DatesPicky
 
+## v 0.0.7
+* [Fix] After date change added checking if it is displayed, and if not, changing to the right month
+
 ## v 0.0.6
 * [Fix] Always update label, not only when the new value is different. It fixes an issue when on load of the page there was no indication that dates were already set.
 

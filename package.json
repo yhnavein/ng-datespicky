@@ -1,6 +1,6 @@
 {
   "name": "ng-datespicky",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "AngularJS Date Range Picker written in TypeScript with no additional dependencies",
   "repository": {
     "type": "git",
@@ -25,7 +25,9 @@
     "test:coverage": "jest --coverage",
     "prepare": "npm run build"
   },
-  "contributors": [],
+  "contributors": [
+    "Izabela Ciskowska"
+  ],
   "license": "MIT",
   "main": "./dist/datespicky.js",
   "typings": "./dist/index.d.ts",
