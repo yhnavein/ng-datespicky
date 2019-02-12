@@ -4,7 +4,6 @@ const daysInWeek = 7;
 
 export class CalendarService {
   groupByWeeks(days: ICalendarDay[]): ICalendarDay[][] {
-    const res = [];
     if (!days || days.length === 0) {
       return [];
     }

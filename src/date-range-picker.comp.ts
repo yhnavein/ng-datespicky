@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-import { DateRangePickerOptions, IPredefinedRange, ICalendarDay, CalendarService, ICalendar, ISelectedDates } from './';
+import { DateRangePickerOptions, IPredefinedRange, ICalendarDay, CalendarService, ISelectedDates } from './';
 import template from './date-range-picker.html';
 
 const defaultOptions: DateRangePickerOptions = {
@@ -26,14 +26,14 @@ export class DateRangePickerController implements ng.IComponentController {
   weekDays: string[];
 
   ranges: IPredefinedRange[] = [
-    { name: 'Today', from: moment(), to: moment() },
-    { name: 'Yesterday', from: moment().subtract(1, 'days'), to: moment().subtract(1, 'days') },
-    { name: 'Last 7 Days', from: moment().subtract(6, 'days'), to: moment() },
-    { name: 'Last 30 Days', from: moment().subtract(29, 'days'), to: moment() },
-    { name: 'This Month', from: moment().startOf('month'), to: moment().endOf('month') },
-    { name: 'Last Month', from: moment().subtract(1, 'month').startOf('month'), to: moment().subtract(1, 'month').endOf('month') },
-    { name: 'This Year', from: moment().startOf('year'), to: moment().endOf('year') },
-    // { name: 'Last Year', from: moment().subtract(1, 'year').startOf('year'), to: moment().subtract(1, 'year').endOf('year') }
+    { name: 'Today', from: moment().utc(), to: moment().utc() },
+    { name: 'Yesterday', from: moment().utc().subtract(1, 'days'), to: moment().utc().subtract(1, 'days') },
+    { name: 'Last 7 Days', from: moment().utc().subtract(6, 'days'), to: moment().utc() },
+    { name: 'Last 30 Days', from: moment().utc().subtract(29, 'days'), to: moment().utc() },
+    { name: 'This Month', from: moment().utc().startOf('month'), to: moment().utc().endOf('month') },
+    { name: 'Last Month', from: moment().utc().subtract(1, 'month').startOf('month'), to: moment().utc().subtract(1, 'month').endOf('month') },
+    { name: 'This Year', from: moment().utc().startOf('year'), to: moment().utc().endOf('year') },
+    // { name: 'Last Year', from: moment().utc().subtract(1, 'year').startOf('year'), to: moment().utc().subtract(1, 'year').endOf('year') }
   ];
 
   private readonly dateFormat: string = 'YYYY-MM-DD';
@@ -46,8 +46,8 @@ export class DateRangePickerController implements ng.IComponentController {
   $onInit(): void {
     this.options = angular.merge({}, defaultOptions, this.options);
     this.weekDays = moment.weekdaysMin();
-    this.leftDate = moment();
-    this.rightDate = moment().add(1, 'month');
+    this.leftDate = moment().utc();
+    this.rightDate = moment().utc().add(1, 'month');
 
     // let's watch for changes coming in from the application
     // for now let's disable this functionality
@@ -95,8 +95,8 @@ export class DateRangePickerController implements ng.IComponentController {
   }
 
   selectRange(range: IPredefinedRange) {
-    this.startDate = this.convertToUtcDate(range.from.toDate());
-    this.endDate = this.convertToUtcDate(range.to.toDate());
+    this.startDate = range.from.utc().toDate();
+    this.endDate = range.to.utc().toDate();
     this.makeSelection();
   }
 
@@ -122,12 +122,7 @@ export class DateRangePickerController implements ng.IComponentController {
   }
 
   formatDate(date?: Date): string {
-    return date ? moment(date).format(this.dateFormat) : '?';
-  }
-
-  convertToUtcDate(date: Date) {
-    const extracted = moment(date).format('YYYY-MM-DD');
-    return moment(extracted + 'T00:00:00.00Z').toDate();
+    return date ? moment(date).utc().format(this.dateFormat) : '?';
   }
 
   clickDay(day: ICalendarDay) {
@@ -135,11 +130,11 @@ export class DateRangePickerController implements ng.IComponentController {
 
     if (!this.startDate || this.endDate || date.isBefore(this.startDate, 'day')) {
       this.endDate = undefined;
-      this.startDate = this.convertToUtcDate(date.toDate());
+      this.startDate = date.toDate();
     } else if (!this.endDate && date.isBefore(this.startDate)) {
-      this.endDate = this.convertToUtcDate(this.startDate);
+      this.endDate = this.startDate;
     } else {
-      this.endDate = this.convertToUtcDate(date.toDate());
+      this.endDate = date.toDate();
     }
 
     if (this.endDate && this.startDate && this.options.autoApply) {
