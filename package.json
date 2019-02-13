@@ -1,6 +1,6 @@
 {
   "name": "ng-datespicky",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "AngularJS Date Range Picker written in TypeScript with no additional dependencies",
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "jest": "21.2.1",
     "moment": "2.20.1",
     "ng-annotate-loader": "0.6.1",
-    "node-sass": "4.7.2",
+    "node-sass": "4.11.0",
     "stylelint": "8.4.0",
     "stylelint-config-standard": "17.0.0",
     "stylelint-scss": "2.3.0",
