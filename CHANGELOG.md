@@ -1,5 +1,8 @@
 # AngularJS DatesPicky
 
+## v 0.1.0
+* [Improvement] Handle properly different TimeZones. Needs some additional testing
+
 ## v 0.0.7
 * [Fix] After date change added checking if it is displayed, and if not, changing to the right month
 
