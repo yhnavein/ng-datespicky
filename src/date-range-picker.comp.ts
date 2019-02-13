@@ -26,18 +26,17 @@ export class DateRangePickerController implements ng.IComponentController {
   weekDays: string[];
 
   ranges: IPredefinedRange[] = [
-    { name: 'Today', from: moment().utc(), to: moment().utc() },
-    { name: 'Yesterday', from: moment().utc().subtract(1, 'days'), to: moment().utc().subtract(1, 'days') },
-    { name: 'Last 7 Days', from: moment().utc().subtract(6, 'days'), to: moment().utc() },
-    { name: 'Last 30 Days', from: moment().utc().subtract(29, 'days'), to: moment().utc() },
-    { name: 'This Month', from: moment().utc().startOf('month'), to: moment().utc().endOf('month') },
-    { name: 'Last Month', from: moment().utc().subtract(1, 'month').startOf('month'), to: moment().utc().subtract(1, 'month').endOf('month') },
-    { name: 'This Year', from: moment().utc().startOf('year'), to: moment().utc().endOf('year') },
-    // { name: 'Last Year', from: moment().utc().subtract(1, 'year').startOf('year'), to: moment().utc().subtract(1, 'year').endOf('year') }
+    { name: 'Today', from: moment.utc(), to: moment.utc() },
+    { name: 'Yesterday', from: moment.utc().subtract(1, 'days'), to: moment.utc().subtract(1, 'days') },
+    { name: 'Last 7 Days', from: moment.utc().subtract(6, 'days'), to: moment.utc() },
+    { name: 'Last 30 Days', from: moment.utc().subtract(29, 'days'), to: moment.utc() },
+    { name: 'This Month', from: moment.utc().startOf('month'), to: moment.utc().endOf('month') },
+    { name: 'Last Month', from: moment.utc().subtract(1, 'month').startOf('month'), to: moment.utc().subtract(1, 'month').endOf('month') },
+    { name: 'This Year', from: moment.utc().startOf('year'), to: moment.utc().endOf('year') },
+    // { name: 'Last Year', from: moment.utc().subtract(1, 'year').startOf('year'), to: moment.utc().subtract(1, 'year').endOf('year') }
   ];
 
   private readonly dateFormat: string = 'YYYY-MM-DD';
-  private readonly calendarService = new CalendarService();
 
   /* @ngInject */
   constructor(private $scope: ng.IScope) {
@@ -46,8 +45,8 @@ export class DateRangePickerController implements ng.IComponentController {
   $onInit(): void {
     this.options = angular.merge({}, defaultOptions, this.options);
     this.weekDays = moment.weekdaysMin();
-    this.leftDate = moment().utc();
-    this.rightDate = moment().utc().add(1, 'month');
+    this.leftDate = moment.utc();
+    this.rightDate = moment.utc().add(1, 'month');
 
     // let's watch for changes coming in from the application
     // for now let's disable this functionality
@@ -122,7 +121,7 @@ export class DateRangePickerController implements ng.IComponentController {
   }
 
   formatDate(date?: Date): string {
-    return date ? moment(date).utc().format(this.dateFormat) : '?';
+    return date ? moment(date).format(this.dateFormat) : '?';
   }
 
   clickDay(day: ICalendarDay) {
